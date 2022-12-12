@@ -1,0 +1,16 @@
+.navbar {
+  background-color: $primary;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+
+  &-logo {
+    height: 40px;
+  }
+
+  &-title {
+    font-size: 1.2rem;
+  }
+}

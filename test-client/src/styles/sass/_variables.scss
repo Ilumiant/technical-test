@@ -1,0 +1,16 @@
+//fonts
+$mainFont: Helvetica, sans-serif;
+$mainFontSize: 16px;
+
+//colors
+$primary: #264653;
+$success: #2a9d8f;
+$warning: #e9c46a;
+$danger: #e63946;
+
+$theme-colors: (
+  "primary":    $primary,
+  "success":    $success,
+  "warning":    $warning,
+  "danger":     $danger,
+)

@@ -1,0 +1,30 @@
+
+@each $name, $color in $theme-colors {
+  .button-#{$name} {
+    background-color: $color;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color .3s;
+
+    &:hover {
+      background-color: darken($color, 7%);
+    }
+  
+    &:active {
+      background-color: darken($color, 15%);
+    }
+  
+    &:disabled {
+      background-color: lighten($color, 50%);
+      cursor: default;
+    }
+  }
+
+}

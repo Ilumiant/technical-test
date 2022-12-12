@@ -1,0 +1,24 @@
+{
+  "standard.enable": true,
+  "standard.run": "onType",
+  "standard.autoFixOnSave": true,
+  "standard.validate": [
+    "javascript",
+    "javascriptreact",
+  ],
+  "standard.options": {
+    "ignore": [
+        "node_modules/**",
+        "build/**"
+    ]
+  },
+  "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+  },
+  "eslint.validate": [
+      "javascript"
+  ],
+  "editor.tabSize": 2,
+  "standard.engine": "standard",
+  "javascript.suggestionActions.enabled": false
+}

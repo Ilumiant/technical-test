@@ -1,0 +1,1 @@
+export const API_HOST: string = process.env.API_HOST || "http://localhost:4000"
