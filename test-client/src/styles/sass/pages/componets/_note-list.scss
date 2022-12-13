@@ -1,4 +1,14 @@
 .note-list {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  &-filters {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 1rem;
+    gap: 1rem;
+  }
 }

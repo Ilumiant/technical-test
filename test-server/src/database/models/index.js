@@ -1,4 +1,4 @@
-const path = require('node:path')
+const path = require('path')
 const Sequelize = require('sequelize')
 const env = process.env.NODE_ENV || 'development'
 const config = require(path.resolve(__dirname, '../../config/config.js'))[env]

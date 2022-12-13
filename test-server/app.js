@@ -1,9 +1,9 @@
-const fs = require('node:fs')
+const fs = require('fs')
 const express = require('express')
 const cors = require('cors')
 const logger = require('morgan')
 const router = require('./src/router.js')
-const path = require('node:path')
+const path = require('path')
 
 const app = express()
 

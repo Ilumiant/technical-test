@@ -1,6 +1,6 @@
 const fs = require('fs')
-const path = require('node:path')
-const util = require('node:util')
+const path = require('path')
+const util = require('util')
 const logFile = fs.createWriteStream(path.resolve('src', 'logs', 'debug.log'), { flags: 'w' })
 const logStdout = process.stdout
 

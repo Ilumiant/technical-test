@@ -48,7 +48,7 @@ export const NotePage = () => {
       <Modal 
         isShownModal={isShownModal}
         hideModal={hideModal}
-        title="Note Form"
+        title="Formulario de Notas"
       >
         {selectedNote ? (<NoteForm selectedNote={selectedNote} />) : (<NoteForm />)}
       </Modal>
