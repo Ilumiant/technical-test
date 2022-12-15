@@ -1,13 +1,25 @@
 const Models = require('../database/models')
 const log = require('../logs/log')
+const { errorTypes } = require('./ErrorTypes')
+
+const serverErrorMessage = 'Internal server error'
 
 const NoteService = {
   getAll: async () => {
     try {
       const notes = await Models().Note.findAll()
-      return notes
+      return {
+        error: false,
+        message: 'Note found',
+        data: notes
+      }
     } catch (error) {
       log.error(error)
+      return {
+        error: true,
+        errorType: errorTypes.ServerError,
+        message: serverErrorMessage
+      }
     }
   },
   get: async (id) => {
@@ -16,6 +28,7 @@ const NoteService = {
       if (!note) {
         return {
           error: true,
+          errorType: errorTypes.NotFound,
           message: 'Note not found'
         }
       }
@@ -28,7 +41,8 @@ const NoteService = {
       log.error(error)
       return {
         error: true,
-        message: 'Note could not be found'
+        errorType: errorTypes.ServerError,
+        message: serverErrorMessage
       }
     }
   },
@@ -44,13 +58,21 @@ const NoteService = {
       log.error(error)
       return {
         error: true,
-        message: 'Note cannot be created'
+        errorType: errorTypes.ServerError,
+        message: serverErrorMessage
       }
     }
   },
   update: async (id, { title, body }) => {
     try {
       const note = await Models().Note.findOne({ where: { id } })
+      if (!note) {
+        return {
+          error: true,
+          errorType: errorTypes.NotFound,
+          message: 'Note not found'
+        }
+      }
       if (title) note.title = title
       if (body) note.body = body
       note.save()
@@ -64,7 +86,8 @@ const NoteService = {
       log.error(error)
       return {
         error: true,
-        message: 'Note cannot be updated'
+        errorType: errorTypes.ServerError,
+        message: serverErrorMessage
       }
     }
   },
@@ -88,7 +111,8 @@ const NoteService = {
       log.error(error)
       return {
         error: true,
-        message: 'Note cannot be deleted'
+        errorType: errorTypes.ServerError,
+        message: serverErrorMessage
       }
     }
   }

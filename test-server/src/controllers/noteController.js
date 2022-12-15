@@ -1,3 +1,4 @@
+const { errorTypes } = require('../services/ErrorTypes')
 const NoteService = require('../services/NoteService')
 
 async function getNotes (_, res) {
@@ -9,11 +10,16 @@ async function getNote (req, res) {
   const { id } = req.params
   const {
     error,
+    errorType,
     message,
     data
   } = await NoteService.get(id)
   if (error) {
-    return res.status(404).json({ error, messages: [message] })
+    if (errorType === errorTypes.NotFound) {
+      return res.status(404).json({ error, messages: [message] })
+    } else {
+      return res.status(500).json({ error, messages: [message] })
+    }
   }
   return res.status(200).json({ error, messages: [message], data })
 }
@@ -45,11 +51,16 @@ async function updateNote (req, res) {
   if (body) updateData.body = body
   const {
     error,
+    errorType,
     message,
     data
   } = await NoteService.update(id, { title, body })
   if (error) {
-    return res.status(500).json({ error, messages: [message] })
+    if (errorType === errorTypes.NotFound) {
+      return res.status(404).json({ error, messages: [message] })
+    } else {
+      return res.status(500).json({ error, messages: [message] })
+    }
   }
   return res.status(200).json({ error, messages: [message], data })
 }
