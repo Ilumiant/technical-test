@@ -3,7 +3,7 @@ import {
   cloneElement,
   isValidElement,
   ReactNode
-} from "react";
+} from "react"
 
 type ChildProps = {
   didSaveForm: () => void,
@@ -40,12 +40,12 @@ export const Modal = ({isShownModal, hideModal, title, children}: ModalProps) =>
                 ) {
                   return cloneElement<ChildProps>(child, { didSaveForm: hideModal })
                 }
-                return child;
+                return child
               })}
             </div>
           </div>
         </div>
       )}
     </>
-  );
-};
+  )
+}

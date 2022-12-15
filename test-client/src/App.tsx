@@ -1,18 +1,18 @@
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-import { NotePage } from './pages/notes/NotePage';
+import Swal, { SweetAlertIcon } from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import { NotePage } from './pages/notes/NotePage'
 
 function App() {
   return (
     <NotePage />
-  );
+  )
 }
 
 const swalWithBootstrapButtons = Swal.mixin({
   customClass: {
     confirmButton: 'button-success',
     denyButton: 'button-danger',
-    cancelButton: 'button-primary'
+    cancelButton: 'ml-1 button-primary'
   },
   buttonsStyling: false
 })
@@ -35,4 +35,22 @@ export const showSwalSuccessMessage = (text: string, title = "Success") => {
   })
 }
 
-export default App;
+export const showSwalTwoOptions = async (
+    title = '',
+    text = '',
+    icon : SweetAlertIcon | undefined = 'question',
+    confirmButtonText = 'Confirmar',
+    cancelButtonText = 'Cancelar',
+  ) => {
+  const MySwal = withReactContent(swalWithBootstrapButtons)
+  return await MySwal.fire({
+    icon,
+    title,
+    html: text,
+    showCancelButton: true,
+    confirmButtonText,
+    cancelButtonText,
+  })
+}
+
+export default App

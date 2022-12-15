@@ -5,10 +5,12 @@ import { Note } from "../types"
 
 type Props = {
   notes: Note[],
-  editNote: (id: number | string) => Promise<void>
+  showNote: (id: number | string) => Promise<void>,
+  editNote: (id: number | string) => Promise<void>,
+  deleteNote: (note: Note) => Promise<void>
 }
 
-export const NoteList = ({ notes, editNote }: Props) => {
+export const NoteList = ({ notes, showNote, editNote, deleteNote }: Props) => {
   const [orderBy, setOrderBy] = useState<string>('createdAt')
   const [textFilter, setTextFilter] = useState('')
 
@@ -66,9 +68,11 @@ export const NoteList = ({ notes, editNote }: Props) => {
           <Table.Row>
             <th>#</th>
             <th>Título</th>
-            <th>Creado el</th>
-            <th>Actualizado el</th>
-            <th>Edición</th>
+            <th>Creada el</th>
+            <th>Actualizada el</th>
+            <th>Mostrar</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -81,7 +85,9 @@ export const NoteList = ({ notes, editNote }: Props) => {
               <td>{note.title}</td>
               <td>{note.formattedCreatedAt}</td>
               <td>{note.formattedUpdatedAt}</td>
-              <td><Button onClick={() => editNote(note.id)}>Editar</Button></td>
+              <td><Button variant="primary" onClick={() => showNote(note.id)}>Ver</Button></td>
+              <td><Button variant="success" onClick={() => editNote(note.id)}>Editar</Button></td>
+              <td><Button variant="danger" onClick={() => deleteNote(note)}>Eliminar</Button></td>
             </Table.Row>
           ))}
         </Table.Body>

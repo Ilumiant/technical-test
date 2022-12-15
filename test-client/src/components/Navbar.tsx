@@ -1,4 +1,4 @@
-import logo from '../react-logo.svg';
+import logo from '../react-logo.svg'
 
 export const Navbar = () => {
   return (

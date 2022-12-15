@@ -10,7 +10,11 @@ export type ResponseGetNotesFetch = {
   message: string
 }
 
-export const getNotesFetch = async (params?: GetFetch): Promise<ResponseGetNotesFetch> => {
+export function visualizeUpdateAt(createdAt: string, updatedAt: string) {
+  return createdAt === updatedAt ? '' : updatedAt
+}
+
+const getNotesFetch = async (params?: GetFetch): Promise<ResponseGetNotesFetch> => {
   const abortController = params?.abortController || null
 
   try {
@@ -21,15 +25,18 @@ export const getNotesFetch = async (params?: GetFetch): Promise<ResponseGetNotes
 
     return {
       data: {
-        notes: response.map((note: BackendNote): Note => {
+        notes: response.data.map((note: BackendNote): Note => {
           return ({
             id: note.id,
             body: note.body,
             title: note.title,
             createdAt: note.createdAt,
-            updatedAt: note.updatedAt,
+            updatedAt: visualizeUpdateAt(note.createdAt, note.updatedAt),
             formattedCreatedAt: formatDateTime(new Date(note.createdAt)),
-            formattedUpdatedAt: formatDateTime(new Date(note.updatedAt))
+            formattedUpdatedAt: visualizeUpdateAt(
+              formatDateTime(new Date(note.createdAt)),
+              formatDateTime(new Date(note.updatedAt))
+            )
           })
         }),
       },
@@ -40,3 +47,5 @@ export const getNotesFetch = async (params?: GetFetch): Promise<ResponseGetNotes
   }
   
 }
+
+export default getNotesFetch

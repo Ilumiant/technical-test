@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { getNotesFetch, ResponseGetNotesFetch } from '../../../adapters/notes/getNotesFetch';
-import { Note } from '../types';
+import getNotesFetch, { ResponseGetNotesFetch } from '../../../adapters/notes/getNotesFetch'
+import { Note } from '../types'
 
 type UseNotesReturn = [
   Note[],
@@ -21,13 +21,13 @@ export const useNotes = (): UseNotesReturn => {
       setNotes(notes)
       setIsLoading(false)
     } catch (error: any) {
-      console.error(error.message);
+      console.error(error.message)
     }
   }
 
   useEffect(() => {
     setIsLoading(true)
-    const abortController = new AbortController();
+    const abortController = new AbortController()
     const fetchData = async () => {
       try {
         const response: ResponseGetNotesFetch = await getNotesFetch({ abortController })
@@ -37,14 +37,14 @@ export const useNotes = (): UseNotesReturn => {
       } catch (error: any) {
         console.error(error.message)
       }
-    };
+    }
 
-    fetchData();
+    fetchData()
 
     return () => {
-      abortController.abort();
-    };
-  }, []);
+      abortController.abort()
+    }
+  }, [])
 
   return [notes, reload, isLoading]
 }

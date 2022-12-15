@@ -1,5 +1,5 @@
-import { PostFetch } from "../FetchTypes";
-import generalFetch from "../generalFetch";
+import { PostFetch } from "../FetchTypes"
+import generalFetch from "../generalFetch"
 
 export type ResponseCreateNoteFetch = {
   data: {
@@ -27,7 +27,6 @@ const createNoteFetch = async (params: PostFetch): Promise<ResponseCreateNoteFet
       message: response.message
     }
   } catch (error: any) {
-    console.log({error});
     throw new Error(error?.message || 'unknown', error)
   }
 

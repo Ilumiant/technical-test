@@ -8,6 +8,12 @@ type Note = {
   formattedUpdatedAt: string,
 }
 
+export enum ActionNote {
+  ShowNote = 0,
+  CreateNote = 1,
+  EditNote = 2
+}
+
 export type {
   Note
 }

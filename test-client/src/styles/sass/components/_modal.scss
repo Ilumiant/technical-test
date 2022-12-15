@@ -31,15 +31,18 @@
     cursor: pointer;
   }
 
-  &-header{
-    // min-height: 40px;
+  &-header {
     border-bottom: 1px solid #0c0d15;
     padding: 1rem;
     font-size: 1.2rem;
     display: flex;
-    align-content: center;
+    align-items: center;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  &-close {
+    font-size: 2rem;
   }
 
 }

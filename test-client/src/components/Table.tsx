@@ -34,7 +34,7 @@ const Body = ({ children }: Props) => {
 
 const Row = ({ children, isActive }: RowProps) => {
   return (
-    <tr className={isActive ? 'active-row' : ''}>
+    <tr className={isActive ? 'active-row' : ''} role='row'>
       { children }
     </tr>
   )

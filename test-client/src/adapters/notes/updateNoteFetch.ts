@@ -1,8 +1,7 @@
-import { PutFetch } from "../FetchTypes";
-import generalFetch from "../generalFetch";
+import { PutFetch } from "../FetchTypes"
+import generalFetch from "../generalFetch"
 
 const updateNoteFetch = async (params: PutFetch) => {
-  console.log({params});
   const { id, formData, abortController = null } = params
 
   try {
@@ -20,7 +19,6 @@ const updateNoteFetch = async (params: PutFetch) => {
       message: response.message
     }
   } catch (error: any) {
-    console.log({error});
     throw new Error(error?.message || 'unknown', error)
   }
 
